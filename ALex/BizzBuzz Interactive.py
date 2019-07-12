@@ -107,4 +107,3 @@ while x <= 100:
                 print("Wrong. SMH")
                 print("Player 1 Wins!")
                 break
-n = int(input())
