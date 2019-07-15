@@ -7,5 +7,5 @@ def even(x):
         return False
 a=1
 while a<=10:
-    print(even(a))
+    print(a, even(a))
     a+=1
