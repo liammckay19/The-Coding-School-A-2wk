@@ -22,8 +22,8 @@ else:
 if u==1:
     print("Divisible by neither")
 if u==2:
-    print("divisible by Bizz only")
+    print("Divisible by Bizz only")
 if u==3:
-    print("divisible by Buzz only")
+    print("Divisible by Buzz only")
 if u==4:
-    print("divisible by Bizz and Buzz")
+    print("Divisible by Bizz and Buzz")
