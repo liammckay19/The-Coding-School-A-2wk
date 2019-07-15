@@ -12,10 +12,18 @@ y1 = round(y, 0)
 z = x / k
 z1 = round(z, 0)
 if y != y1 and z != z1:
-    print("Divisible by neither")
+    u = 1
 elif y == y1 and z != z1:
-    print("Divisible by Bizz only")
+    u = 2
 elif y != y1 and z == z1:
-    print("Divisible by Buzz only")
+    u = 3
 else:
+    u = 4
+if u==1:
     print("Divisible by neither")
+if u==2:
+    print("divisible by Bizz only")
+if u==3:
+    print("divisible by Buzz only")
+if u==4:
+    print("divisible by Bizz and Buzz")
