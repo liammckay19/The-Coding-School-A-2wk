@@ -1,11 +1,55 @@
-##
-n = int(input())
-f=0
-a = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135]
-z=n
-l=0
-while z>0:
-    l+=a[z-1]*(10**f)
-    z-=1
-    f+=1
-print(l)
+def beginPlayerTurn(PlayerTurn):
+    if PlayerTurn == 1:
+        n = input()
+        y = x / j
+        y1 = round(y, 0)
+        z = x / k
+        z1 = round(z, 0)
+        if y != y1 and z != z1:
+            u = 1
+        elif y == y1 and z != z1:
+            u = 2
+        elif y != y1 and z == z1:
+            u = 3
+        else:
+            u = 4
+        if u==1:
+            if int(n) == x:
+                print("correct!")
+                Player1Turn = 2
+                x+=1
+            else:
+                print("Wrong. SMH")
+                print("Player " + PlayerTurn + " is out!")
+                alive{PlayerTurn}=False
+                break
+        if u==2:
+            if str(n) == "Bizz":
+                print("correct!")
+                Player1Turn = 2
+                x+=1
+            else:
+                print("Wrong. SMH")
+                print("Player " + PlayerTurn + " is out!")
+                alive{PlayerTurn}=False
+                break
+        if u==3:
+            if str(n) == "Buzz":
+                print("correct!")
+                x+=1
+                Player1Turn = 2
+            else:
+                print("Wrong. SMH")
+                print("Player " + PlayerTurn + " is out!")
+                alive{PlayerTurn}=False
+                break
+        if u==4:
+            if str(n) == "BizzBuzz":
+                print("correct!")
+                x+=1
+                Player1Turn = 2
+            else:
+                print("Wrong. SMH")
+                print("Player " + PlayerTurn + " is out!")
+                alive{PlayerTurn}=False
+                break
