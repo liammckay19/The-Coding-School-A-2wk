@@ -11,6 +11,10 @@ y = x / j
 y1 = round(y, 0)
 z = x / k
 z1 = round(z, 0)
+
+print(y,y1,z,z1)
+
+
 if y != y1 and z != z1:
     u = 1
 elif y == y1 and z != z1:
@@ -27,3 +31,8 @@ if u==3:
     print("divisible by Buzz only")
 if u==4:
     print("divisible by Bizz and Buzz")
+    
+# Comments:
+# Functions great, needs some revision to make the code more concise.
+"""
+"""
