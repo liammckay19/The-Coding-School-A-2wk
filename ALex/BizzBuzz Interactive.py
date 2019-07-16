@@ -13,7 +13,7 @@ alive = {i:True for i in range(playerNumber)}
 
 
 def beginPlayerTurn(PlayerTurn):
-    if alive(playerTurn) == True:
+    if alive{playerTurn} == True:
         n = input()
         y = x / j
         y1 = round(y, 0)
