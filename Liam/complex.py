@@ -40,11 +40,17 @@ class Complex(object):
         result.real = self.real + other.real  # add like terms
         result.imaginary = self.imaginary + other.imaginary
         return result
-
+    
     # TODO: these methods
     def __sub__(self, other):
+        pass
+    
     def __mul__(self, other):
-    def div(self, other):
+        pass
+    
+    def __truediv__(self, other):
+        return 'hi'
+    
     def __mod__(self):
         # Square root of the sum of the squares.
         # 3+4i mod(3+4i) = sqrt(3^2 + (4i)^2)
@@ -52,6 +58,7 @@ class Complex(object):
         # sqrt(-7)
         # = 0 + sqrt(7)i
         # Complex(0, sqrt(7)*i)
+        pass
     
     def __str__(self):
         if self.imaginary == 0:
@@ -71,7 +78,7 @@ class Complex(object):
 def main():
     C = Complex(2, 4)
     D = Complex(1, 5)
-    print(C + D)
+    print(C / D)
     # TODO: • C+D
     # TODO: • C-D
     # TODO: • C*D
