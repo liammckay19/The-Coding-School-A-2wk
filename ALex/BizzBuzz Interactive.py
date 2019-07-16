@@ -36,8 +36,9 @@ def beginPlayerTurn(PlayerTurn):
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
                 alive
+                if w!<=
                 {PlayerTurn} = False
-                break
+
         if u == 2:
             if str(n) == "Bizz":
                 print("correct!")
@@ -48,7 +49,7 @@ def beginPlayerTurn(PlayerTurn):
                 print("Player " + PlayerTurn + " is out!")
                 alive
                 {PlayerTurn} = False
-                break
+
         if u == 3:
             if str(n) == "Buzz":
                 print("correct!")
@@ -59,7 +60,7 @@ def beginPlayerTurn(PlayerTurn):
                 print("Player " + PlayerTurn + " is out!")
                 alive
                 {PlayerTurn} = False
-                break
+
         if u == 4:
             if str(n) == "BizzBuzz":
                 print("correct!")
@@ -70,5 +71,5 @@ def beginPlayerTurn(PlayerTurn):
                 print("Player " + PlayerTurn + " is out!")
                 alive
                 {PlayerTurn} = False
-                break
+
 beginPlayerTurn(1)
