@@ -13,6 +13,11 @@ alive = {i:True for i in range(w)}
 
 
 def beginPlayerTurn(PlayerTurn):
+    """
+    doc strings! add these
+    :param PlayerTurn:
+    :return:
+    """
     if PlayerTurn == 1:
         n = input() # rename variables that are one letter using refactor
         y = x / j
