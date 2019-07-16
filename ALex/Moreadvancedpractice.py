@@ -1,11 +1,11 @@
 def even(x):
-    if x % 2 == 0:  # modulo operator also works here
+    z=x/2
+    y=round(z,0)
+    if z==y:
         return True
     else:
         return False
-
-
-a = 1
-while a <= 10:
-    print(a, even(a))
-    a += 1
+a=1
+while a<=10:
+    print(even(a))
+    a+=1
