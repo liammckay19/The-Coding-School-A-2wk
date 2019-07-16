@@ -36,9 +36,12 @@ def beginPlayerTurn(PlayerTurn):
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
                 alive
-                if w!<=
-                {PlayerTurn} = False
-
+                if w!=PlayerTurn:
+                    alive[PlayerTurn] = False
+                    PlayerTurn+=1
+                else:
+                    alive[PlayerTurn] = False
+                    PlayerTurn = 1
         if u == 2:
             if str(n) == "Bizz":
                 print("correct!")
@@ -47,8 +50,12 @@ def beginPlayerTurn(PlayerTurn):
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                alive
-                {PlayerTurn} = False
+                if w!=PlayerTurn:
+                    alive[PlayerTurn] = False
+                    PlayerTurn+=1
+                else:
+                    alive[PlayerTurn] = False
+                    PlayerTurn = 1
 
         if u == 3:
             if str(n) == "Buzz":
@@ -58,8 +65,12 @@ def beginPlayerTurn(PlayerTurn):
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                alive
-                {PlayerTurn} = False
+                if w!=PlayerTurn:
+                    alive[PlayerTurn] = False
+                    PlayerTurn+=1
+                else:
+                    alive[PlayerTurn] = False
+                    PlayerTurn = 1
 
         if u == 4:
             if str(n) == "BizzBuzz":
@@ -69,7 +80,9 @@ def beginPlayerTurn(PlayerTurn):
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                alive
-                {PlayerTurn} = False
-
-beginPlayerTurn(1)
+                if w!=PlayerTurn:
+                    alive[PlayerTurn] = False
+                    PlayerTurn+=1
+                else:
+                    alive[PlayerTurn] = False
+                    PlayerTurn = 1

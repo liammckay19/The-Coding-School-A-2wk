@@ -36,7 +36,7 @@ class Complex(object):
         result.real = Realidad
         result.imaginary = j
         return result
-    def  __divmod__(self, other):
+    def  __truediv__(self, other):
         """
         divide two complex numbers
         :param other:
@@ -78,6 +78,5 @@ def main():
     D = Complex(4,4)
     print(C)
     print(D)
-    print(divmod(C,D))
 if __name__ == '__main__':
     main()
