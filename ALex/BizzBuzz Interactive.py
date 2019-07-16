@@ -4,16 +4,16 @@ print("Buzz?")
 k = int(input())
 x = 1
 u = 0
-Player1Turn = 1
+playerTurn = 1
 print("How many players?")
-w=int(input())
+playerNumber=int(input())
 
 print("Answers: x,Bizz,Buzz,BizzBuzz")
-alive = {i:True for i in range(players)}
+alive = {i:True for i in range(playerNumber)}
 
 
 def beginPlayerTurn(PlayerTurn):
-    if PlayerTurn == 1:
+    if alive(playerTurn) == True:
         n = input()
         y = x / j
         y1 = round(y, 0)
@@ -30,13 +30,16 @@ def beginPlayerTurn(PlayerTurn):
         if u == 1:
             if int(n) == x:
                 print("correct!")
-                Player1Turn = 2
-                x += 1
+                if playerNumber!=PlayerTurn:
+                    PlayerTurn+=1
+                else:
+                    PlayerTurn = 1
+                    x += 1
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
                 alive
-                if w!=PlayerTurn:
+                if playerNumber!=PlayerTurn:
                     alive[PlayerTurn] = False
                     PlayerTurn+=1
                 else:
@@ -45,12 +48,15 @@ def beginPlayerTurn(PlayerTurn):
         if u == 2:
             if str(n) == "Bizz":
                 print("correct!")
-                Player1Turn = 2
-                x += 1
+                if playerNumber!=PlayerTurn:
+                    PlayerTurn+=1
+                else:
+                    PlayerTurn = 1
+                    x += 1
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                if w!=PlayerTurn:
+                if playerNumber!=PlayerTurn:
                     alive[PlayerTurn] = False
                     PlayerTurn+=1
                 else:
@@ -65,7 +71,7 @@ def beginPlayerTurn(PlayerTurn):
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                if w!=PlayerTurn:
+                if playerNumber!=PlayerTurn:
                     alive[PlayerTurn] = False
                     PlayerTurn+=1
                 else:
@@ -80,9 +86,11 @@ def beginPlayerTurn(PlayerTurn):
             else:
                 print("Wrong. SMH")
                 print("Player " + PlayerTurn + " is out!")
-                if w!=PlayerTurn:
+                if playerNumber!=PlayerTurn:
                     alive[PlayerTurn] = False
                     PlayerTurn+=1
                 else:
                     alive[PlayerTurn] = False
                     PlayerTurn = 1
+while x<=100:
+    beginPlayerTurn(playerTurn)
