@@ -9,12 +9,12 @@ print("How many players?")
 w=int(input())
 
 print("Answers: x,Bizz,Buzz,BizzBuzz")
-alive = {i:True for i in range(players)}
+alive = {i:True for i in range(w)}
 
 
 def beginPlayerTurn(PlayerTurn):
     if PlayerTurn == 1:
-        n = input()
+        n = input() # rename variables that are one letter using refactor
         y = x / j
         y1 = round(y, 0)
         z = x / k
@@ -27,7 +27,7 @@ def beginPlayerTurn(PlayerTurn):
             u = 3
         else:
             u = 4
-        if u == 1:
+        if u == 1:  # Make a string statement instead of a number if you want the logic to be seperate
             if int(n) == x:
                 print("correct!")
                 Player1Turn = 2
@@ -42,6 +42,8 @@ def beginPlayerTurn(PlayerTurn):
                 else:
                     alive[PlayerTurn] = False
                     PlayerTurn = 1
+            # This code block could be put into a function for every u case
+        
         if u == 2:
             if str(n) == "Bizz":
                 print("correct!")
