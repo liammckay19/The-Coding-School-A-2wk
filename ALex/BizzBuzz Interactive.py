@@ -1,3 +1,4 @@
+print("Rules:")
 print("Bizz?")
 j = int(input())
 print("Buzz?")
@@ -18,6 +19,7 @@ while x<100:
             playerTurn = 1
         if alive[int(playerTurn)] ==True:
             l=1
+            print("player "+ str(int(playerTurn))+":")
             n = input()
             y = x / j
             y1 = round(y, 0)
@@ -112,5 +114,9 @@ while x<100:
                 playerTurn = 1
             l+=1
     else:
-        print("Player" + str(int(playerTurn)) + " wins!")
-        break
+        if playerTurn<=playerNumber:
+            print("Player" + str(int(playerTurn)) + " wins!")
+            break
+        else:
+            print("No one wins!")
+            break
