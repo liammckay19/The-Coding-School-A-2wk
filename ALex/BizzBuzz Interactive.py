@@ -34,7 +34,7 @@ while x<100:
             else:
                 u = 4
             if u == 1:
-                if int(n) == x:
+                if str(n) == str(x):
                     print("correct!")
                     if playerNumber!=playerTurn:
                         playerTurn+=1
