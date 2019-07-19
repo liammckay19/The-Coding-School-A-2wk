@@ -5,12 +5,12 @@ catchChance = 0
 turnsTaken = 0
 class Player(object):
 
-    def __init__(self, health=30, weapon='stick', strength=5):
+    def __init__(self, health=30, weapon='stick', strength=5,catchChance = 0):
         # TODO: add doc-string
         self.health = health
         self.weapon = weapon
         self.strength = strength
-
+        self.catchChance = 0
     def heal(self):
         self.health = self.health * 1.5 + 5
         return self.health
@@ -29,13 +29,13 @@ class Player(object):
         enemy.health -= self.strength *weapons[self.weapon]
         enemy.damage = enemy.damage * 2 / 3
         return (enemy.health, enemy.damage)
-    def run(self,catchChance, gameLost, enemy):
-        catchChance+=1
+    def run(self,gameLost, enemy):
+        self.catchChance = self.catchChance+1
         self.strength = self.strength/2
-        enemy.health = 1
-        if catchChance == 2:
+        enemy.health = 0
+        if self.catchChance == 1:
             gameLost = True
-        return (self.strength, gameLost, enemy.health)
+        return (self.strength, self.catchChance, gameLost, enemy.health)
 ability = {"hit": True, "arrow": False, "cripple": False, "firebreath": False, "heal": False}
 
 
@@ -49,30 +49,30 @@ class Enemy(object):
 
     def hitplayer(self, player):
         player.health -= self.damage
-        return player.health
         print("Enemy hits you for " + str(self.damage) + " damage!")
+
+        return player.health
 
     def cripple(self, player):
         player.health -= self.damage / 2.5
         player.strength = player.strength * 2 / 3
-        return (player.health, player.strength)
-
         print("Enemy hits you for " + str(self.damage * 2.5) + " damage and cripples you, taking a third of your strength!")
-
+        return (player.health, player.strength)
     def arrow(self, player):
         arrowRandom = random.randint(1,3)
         if arrowRandom == 3:
             player.health -= self.damage * 2
             print("Enemy shoots you for " + str(self.damage * 2) + " damage!")
+            return player.health
         else:
             player.health -= self.damage * 2 / 3
             print("Enemy shoots you for " + str(self.damage * 2 / 3) + " damage!")
             return player.health
 
     def firebreath(self, player):
-        player.health -= damage * 3
-        return player.health
+        player.health -= self.damage * 3
         print("Enemy breaths fire on you for " + str(self.damage * 3) + " damage!")
+        return player.health
 
     def heal(self):
         self.health = self.health + 10 + self.health * 1.5
@@ -92,7 +92,7 @@ def level1Enemy(healthGained, strengthGained):
         enemy1 = Enemy("Angry Relative", 10, "club", 10)
     else:
         enemy1 = Enemy("Giant Toad", 20, "stick", 8)
-    if catchChance >1:
+    if mainCharacter.catchChance >1:
         print("You were caught trying to run and killed!")
     while mainCharacter.health > 0 and enemy1.health > 0 and catchChance <2:
         print("health = " + str(mainCharacter.health))
@@ -111,7 +111,7 @@ def level1Enemy(healthGained, strengthGained):
         elif playerInput == "throw weapon":
             mainCharacter.throwWeapon(enemy1)
         elif playerInput == "run":
-            mainCharacter.run(catchChance,gameLost, enemy1)
+            mainCharacter.run(gameLost, enemy1)
         else:
             print("You forfeit your attack!")
         if(enemy1.health <= 0):
@@ -123,7 +123,7 @@ def level1Enemy(healthGained, strengthGained):
             print("Keep your weapon or pick up "+ str(enemy1.weapon) + "?")
             print("[Y] or [N]")
             switchWeapon = str(input())
-            if switchWeapon == "Y":
+            if switchWeapon == "Y" or switchWeapon == "y":
                 mainCharacter.weapon = enemy1.weapon
             break
         enemy1.hitplayer(mainCharacter)
@@ -143,7 +143,7 @@ def level2Enemy(healthGained, strengthGained):
         enemy2 = Enemy("Giant Spider", 75, "whip", 20)
     else:
         enemy2 = Enemy("Mega Toad", 80, "club", 20)
-    if catchChance >1:
+    if mainCharacter.catchChance >1:
         print("You were caught trying to run and killed!")
     while mainCharacter.health > 0 and enemy2.health > 0 and catchChance <2:
         print("health = " + str(mainCharacter.health))
@@ -162,7 +162,7 @@ def level2Enemy(healthGained, strengthGained):
         elif playerInput == "throw weapon":
             mainCharacter.throwWeapon(enemy2)
         elif playerInput == "run":
-            mainCharacter.run(catchChance,gameLost,enemy2)
+            mainCharacter.run(gameLost,enemy2)
         else:
             print("You forfeit your attack!")
         if(enemy2.health <= 0):
@@ -174,11 +174,11 @@ def level2Enemy(healthGained, strengthGained):
             print("Keep your weapon or pick up "+ str(enemy2.weapon) + "?")
             print("[Y] or [N]")
             switchWeapon = str(input())
-            if switchWeapon == "Y":
+            if switchWeapon == "Y" or switchWeapon == "y":
                 mainCharacter.weapon = enemy2.weapon
             break
-        enemyAttack = random.randint(1,2)
-        if enemyAttack == 1:
+        enemyAttack = random.randint(1,3)
+        if enemyAttack == 1 or enemyAttack == 3:
             enemy2.hitplayer(mainCharacter)
         elif enemyAttack == 2:
             enemy2.cripple(mainCharacter)
@@ -194,7 +194,7 @@ def level3Enemy(healthGained, strengthGained):
         enemy3= Enemy("Samauri", 100, "sword", 55)
     elif (x == 3):
         enemy3= Enemy("Giant Python", 120, "whip", 60)
-    if catchChance >1:
+    if mainCharacter.catchChance >1:
         print("You were caught trying to run and killed!")
     while mainCharacter.health > 0 and enemy3.health > 0 and catchChance <2:
         print("health = " + str(mainCharacter.health))
@@ -213,7 +213,7 @@ def level3Enemy(healthGained, strengthGained):
         elif playerInput == "throw weapon":
             mainCharacter.throwWeapon(enemy3)
         elif playerInput == "run":
-            mainCharacter.run(catchChance,gameLost,enemy3)
+            mainCharacter.run(gameLost,enemy3)
         else:
             print("You forfeit your attack!")
         if(enemy3.health <= 0):
@@ -225,7 +225,7 @@ def level3Enemy(healthGained, strengthGained):
             print("Keep your weapon or pick up "+ str(enemy3.weapon) + "?")
             print("[Y] or [N]")
             switchWeapon = str(input())
-            if switchWeapon == "Y":
+            if switchWeapon == "Y" or switchWeapon == "y":
                 mainCharacter.weapon = enemy3.weapon
             break
         enemyAttack = random.randint(1,3)
@@ -245,7 +245,7 @@ def level4Enemy(healthGained, strengthGained):
         enemy4 = Enemy("Rifleman", 130, "gun", 80)
     elif (x == 2):
         enemy4= Enemy("Dragon", 160, "gun", 80)
-    if catchChance > 1:
+    if mainCharacter.catchChance > 1:
         print("You were caught trying to run and killed!")
     while mainCharacter.health > 0 and enemy4.health > 0 and catchChance <2:
         print("health = " + str(mainCharacter.health))
@@ -264,7 +264,7 @@ def level4Enemy(healthGained, strengthGained):
         elif playerInput == "throw weapon":
             mainCharacter.throwWeapon(enemy4)
         elif playerInput == "run":
-            mainCharacter.run(catchChance,gameLost,enemy4)
+            mainCharacter.run(gameLost,enemy4)
         else:
             print("You forfeit your attack!")
         if(enemy4.health <= 0):
@@ -276,17 +276,18 @@ def level4Enemy(healthGained, strengthGained):
             print("Keep your weapon or pick up "+ str(enemy4.weapon) + "?")
             print("[Y] or [N]")
             switchWeapon = str(input())
-            if switchWeapon == "Y":
+            if switchWeapon == "Y" or switchWeapon == "y":
                 mainCharacter.weapon = enemy4.weapon
+            print("Final Fight!")
             break
         enemyAttack = random.randint(1,4)
         if enemyAttack == 1:
             enemy4.hitplayer(mainCharacter)
         elif enemyAttack == 2:
             enemy4.cripple(mainCharacter)
-        elif enemyAttach == 3:
+        elif enemyAttack == 3:
             enemy4.heal()
-        elif enemyAttach == 4:
+        elif enemyAttack == 4:
             if enemy4.name == "Dragon":
                 enemy4.firebreath(mainCharacter)
             else:
@@ -298,9 +299,8 @@ def level4Enemy(healthGained, strengthGained):
 
 
 def level5Enemy(healthGained, strengthGained):
-    print("Final Fight!")
     enemy5 = Enemy("Diablo", 1000, "potato", 100)
-    if catchChance >1:
+    if mainCharacter.catchChance >1:
         print("You were caught trying to run and killed!")
     while mainCharacter.health > 0 and enemy5.health > 0 and catchChance <2:
         print("health = " + str(mainCharacter.health))
@@ -330,7 +330,7 @@ def level5Enemy(healthGained, strengthGained):
             print("Keep your weapon or pick up "+ str(enemy5.weapon) + "?")
             print("[Y] or [N]")
             switchWeapon = str(input())
-            if switchWeapon == "Y":
+            if switchWeapon == "Y" or switchWeapon == "y":
                 mainCharacter.weapon = enemy5.weapon
             print("You won! Congradulations!")
             break
@@ -339,9 +339,9 @@ def level5Enemy(healthGained, strengthGained):
             enemy5.hitplayer(mainCharacter)
         elif enemyAttack == 2:
             enemy5.cripple(mainCharacter)
-        elif enemyAttach == 3:
+        elif enemyAttack == 3:
             enemy5.heal()
-        elif enemyAttach == 4:
+        elif enemyAttack == 4:
             enemy5.firebreath(mainCharacter)
         else:
             enemy5.arrow(mainCharacter)
@@ -363,22 +363,23 @@ def main():
     print("Your strength is your damage multiplier. The higher that is, the more damage you will do.")
     print("Begin your quest!")
     level1Enemy(40,10)
-    if gameLost == False:
+    if gameLost == False and mainCharacter.catchChance <2:
         level1Enemy(50,12)
-        if gameLost == False:
+        if gameLost == False and mainCharacter.catchChance <2:
             level2Enemy(70,15)
-            if gameLost == False:
+            if gameLost == False and mainCharacter.catchChance <2:
                 level2Enemy(80, 17)
-                if gameLost == False:
+                if gameLost == False and mainCharacter.catchChance <2:
                     level3Enemy(100,20)
-                    if gameLost == False:
+                    if gameLost == False and mainCharacter.catchChance <2:
                         level3Enemy(140,22)
-                        if gameLost == False:
+                        if gameLost == False and mainCharacter.catchChance <2:
                             level4Enemy(170,25)
-                            if gameLost == False:
+                            if gameLost == False and mainCharacter.catchChance <2:
                                 level4Enemy(450,30)
-                                if gameLost == False:
+                                if gameLost == False and mainCharacter.catchChance <2:
                                     level5Enemy(1000000,1000000)
+    print("You lost!")
     print("Game Over!")
 
 if __name__ == '__main__':
