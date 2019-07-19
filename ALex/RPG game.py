@@ -68,12 +68,21 @@ ability = { "hit": True, "arrow": False, "cripple": False, "firebreath": False,
 
 
 class Enemy(object):
-    def __init__(self, name="", health=20, weapon='none', damage=10):
+    def __init__(self, name="", health=20, weapon='none', damage=10, moveset=[]):
         # TODO: add doc-string
         self.health = health
         self.weapon = weapon
         self.damage = damage
         self.name = name
+        self.attacks = moveset
+    
+    def attack (self, player):
+        # choose a random string in the moveset
+        # run the method if the string == name of the method
+        # ex:
+        # random(0, len(moveset)) = 2
+        # myAttack = moveset[2] = "arrow"
+        # if myAttack == "arrow": run self.arrow(player)
     
     def hitplayer(self, player):
         player.health -= self.damage
@@ -110,13 +119,12 @@ class Enemy(object):
         return self.health
 
 
-mainCharacter = Player()  # should be in main()
 
 
-def level1Enemy(healthGained, strengthGained):
+def level1Enemy(mainCharacter, healthGained, strengthGained):
     x = random.randint(1, 5)
     if (x == 1):
-        enemy1 = Enemy("Weak Ogre", 15, "stick", 10)  # nice
+        enemy1 = Enemy("Weak Ogre", 15, "stick", 10, ["hitplayer", "cripple"])  # nice
     elif (x == 2):
         enemy1 = Enemy("Angry Dwarf", 10, "stick", 15)  # nice
     elif (x == 3):
@@ -168,7 +176,7 @@ def level1Enemy(healthGained, strengthGained):
             break
 
 
-def level2Enemy(healthGained, strengthGained):
+def level2Enemy(mainCharacter, healthGained, strengthGained):
     x = random.randint(1, 5)
     if (x == 1):
         enemy2 = Enemy("Enemy Guard", 70, "sword", 20)
@@ -225,7 +233,7 @@ def level2Enemy(healthGained, strengthGained):
             break
 
 
-def level3Enemy(healthGained, strengthGained):
+def level3Enemy(mainCharacter, healthGained, strengthGained):
     x = random.randint(1, 3)
     if (x == 1):
         enemy3 = Enemy("Giant", 150, "whip", 40)
@@ -280,7 +288,7 @@ def level3Enemy(healthGained, strengthGained):
             break
 
 
-def level4Enemy(healthGained, strengthGained):
+def level4Enemy(mainCharacter, healthGained, strengthGained):
     x = random.randint(1, 2)
     if (x == 1):
         enemy4 = Enemy("Rifleman", 130, "gun", 80)
@@ -338,7 +346,7 @@ def level4Enemy(healthGained, strengthGained):
             break
 
 
-def level5Enemy(healthGained, strengthGained):
+def level5Enemy(mainCharacter, healthGained, strengthGained):
     print("Final Fight!")
     enemy5 = Enemy("Diablo", 1000, "potato", 100)
     if catchChance > 1:
@@ -393,6 +401,8 @@ def level5Enemy(healthGained, strengthGained):
 
 
 def main():
+    mainCharacter = Player()  # should be in main()
+    
     print("Hello young traveler. You have come to this land to rid us of these evil invaders!")
     print("These are dark times. To rid us of these invaders, you will have to fight them.")
     print("There will be many enemies along the way. Be prepared, as the tools you have are these:")
@@ -401,23 +411,23 @@ def main():
     print("Your weapon shows how much damage you will deal. Enemies may drop weapons once you kill them!")
     print("Your strength is your damage multiplier. The higher that is, the more damage you will do.")
     print("Begin your quest!")
-    level1Enemy(40, 10)
+    level1Enemy(mainCharacter, 40, 10)
     if gameLost == False:
-        level1Enemy(50, 12)
+        level1Enemy(mainCharacter, 50, 12)
         if gameLost == False:  # use elif not if
-            level2Enemy(70, 15)
+            level2Enemy(mainCharacter, 70, 15)
             if gameLost == False:
-                level2Enemy(80, 17)
+                level2Enemy(mainCharacter, 80, 17)
                 if gameLost == False:
-                    level3Enemy(100, 20)
+                    level3Enemy(mainCharacter, 100, 20)
                     if gameLost == False:
-                        level3Enemy(140, 22)
+                        level3Enemy(mainCharacter, 140, 22)
                         if gameLost == False:
-                            level4Enemy(170, 25)
+                            level4Enemy(mainCharacter, 170, 25)
                             if gameLost == False:
-                                level4Enemy(450, 30)
+                                level4Enemy(mainCharacter, 450, 30)
                                 if gameLost == False:
-                                    level5Enemy(1000000, 1000000)
+                                    level5Enemy(mainCharacter, 1000000, 1000000)
     print("Game Over!")
 
 
