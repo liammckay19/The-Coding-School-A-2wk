@@ -19,11 +19,6 @@ Make a new function that gets player input that can be called upon from the leve
 
 import random
 
-gameLost = False
-weapons = { "stick": 1, "sword": 5, "whip": 3, "club": 2, "gun": 10,
-            "potato": 1000000 }  # must be outside the class to work
-catchChance = 0
-turnsTaken = 0
 
 
 class Player(object):
@@ -402,7 +397,12 @@ def level5Enemy(mainCharacter, healthGained, strengthGained):
 
 def main():
     mainCharacter = Player()  # should be in main()
-    
+    gameLost = False
+    weapons = { "stick": 1, "sword": 5, "whip": 3, "club": 2, "gun": 10,
+                "potato": 1000000 }  # must be outside the class to work
+    catchChance = 0
+    turnsTaken = 0
+
     print("Hello young traveler. You have come to this land to rid us of these evil invaders!")
     print("These are dark times. To rid us of these invaders, you will have to fight them.")
     print("There will be many enemies along the way. Be prepared, as the tools you have are these:")
