@@ -1,4 +1,2 @@
-x = {1:True,2:True}
-
-if x[2] == True:
-    print("hit")
+import random
+print(str(random.randint(1,3)))
