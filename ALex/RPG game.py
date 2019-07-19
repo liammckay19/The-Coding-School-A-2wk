@@ -13,8 +13,6 @@ Looking at code:
 - methods need doc-strings
 - the level1/2/3/4 functions have repetitive code for player input.
 Make a new function that gets player input that can be called upon from the level1/2/3/4 functions
-
--
 """
 
 import random
@@ -400,6 +398,7 @@ def main():
     gameLost = False
     weapons = { "stick": 1, "sword": 5, "whip": 3, "club": 2, "gun": 10,
                 "potato": 1000000 }  # must be outside the class to work
+    # put weapons dictionary inside of an attribute for an Entity class that Player and Enemy inherit from
     catchChance = 0
     turnsTaken = 0
 
